@@ -8,21 +8,27 @@ type Props = {
   label: string;
   icon: React.ReactNode;
   href: string;
+  handleSheetClose: () => void;
 };
 
-export const SidebarItem = ({ label, icon, href }: Props) => {
+export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
   const pathname = usePathname();
   const active = pathname === href;
 
+  const handleClick = () => {
+    handleSheetClose();
+  };
+
   return (
-    <Button
-      variant={active ? "sidebarOutline" : "sidebar"}
-      className='justify-start h-[52px]'
-    >
-      <Link href={href} className='flex items-center'>
+    <Link href={href}>
+      <Button
+        variant={active ? "sidebarOutline" : "sidebar"}
+        className='justify-start h-[52px] w-full flex items-center'
+        onClick={handleClick}
+      >
         <div className='mr-5'>{icon}</div>
         {label}
-      </Link>
-    </Button>
+      </Button>
+    </Link>
   );
 };

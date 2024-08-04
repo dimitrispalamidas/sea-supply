@@ -1,14 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Home, ShoppingCart } from "lucide-react";
+import { Home, ShoppingCart } from "lucide-react"; // Import necessary icons
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
 
-type Props = {
+type SidebarProps = {
   className?: string;
+  handleSheetClose: () => void;
 };
 
-export const Sidebar = ({ className }: Props) => {
+export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
   return (
     <div
       className={cn(
@@ -25,8 +26,18 @@ export const Sidebar = ({ className }: Props) => {
         </div>
       </Link>
       <div className='flex flex-col gap-y-2 flex-1'>
-        <SidebarItem label='Home' href='/home' icon={<Home />} />
-        <SidebarItem label='Order' href='/order' icon={<ShoppingCart />} />
+        <SidebarItem
+          label='Home'
+          href='/home'
+          icon={<Home />}
+          handleSheetClose={handleSheetClose}
+        />
+        <SidebarItem
+          label='Order'
+          href='/order'
+          icon={<ShoppingCart />}
+          handleSheetClose={handleSheetClose}
+        />
       </div>
     </div>
   );
