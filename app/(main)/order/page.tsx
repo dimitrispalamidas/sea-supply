@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useOrder } from "@/context/OrderContext";
 import Image from "next/image";
 import { categories, Item } from "@/lib/items";
+import { Button } from "@/components/ui/button";
 
 interface ItemListProps {
   items: Item[];
@@ -48,7 +49,7 @@ const ItemList: React.FC<ItemListProps> = ({ items, addToCart }) => {
           <Image
             width={48}
             height={48}
-            src={item.imgSrc || "/public/no-image.jpg"}
+            src={item.imgSrc ? item.imgSrc : "/no-image.jpg"}
             alt={item.name}
             className='mb-2 rounded'
           />
@@ -56,12 +57,13 @@ const ItemList: React.FC<ItemListProps> = ({ items, addToCart }) => {
           <p>{item.description}</p>
           <p className='text-sm text-gray-500'>{item.category}</p>
           <p className='font-bold'>${item.price}</p>
-          <button
+          <Button
+            variant={"secondary"}
             onClick={() => addToCart(item)}
-            className='mt-2 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300'
+            className='mt-2'
           >
             Add to Cart
-          </button>
+          </Button>
         </div>
       ))}
     </>
@@ -75,22 +77,22 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
 }) => {
   return (
     <div className='p-4'>
-      <h2 className='text-2xl font-bold mb-4 flex justify-center'>
+      <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
         Personal Items
       </h2>
       <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
         {categories[0]?.subcategories?.map((sub) => (
-          <button
+          <Button
             key={sub.name}
+            variant={"primary"}
             onClick={() => {
               setSelectedCategory("Personal");
               setSelectedSubcategory(sub.name);
               setSelectedSubSubcategory(null);
             }}
-            className='mt-2 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300'
           >
             {sub.name}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
@@ -104,22 +106,22 @@ const ProfessionalItemsSection: React.FC<SectionProps> = ({
 }) => {
   return (
     <div className='p-4 mt-10'>
-      <h2 className='text-2xl font-bold mb-4 flex justify-center'>
+      <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
         Professional Items
       </h2>
       <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
         {categories[1]?.subcategories?.map((sub) => (
-          <button
+          <Button
             key={sub.name}
+            variant={"primary"}
             onClick={() => {
               setSelectedCategory("Professional");
               setSelectedSubcategory(sub.name);
               setSelectedSubSubcategory(null);
             }}
-            className='mt-2 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300'
           >
             {sub.name}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
@@ -148,9 +150,19 @@ const OrderMenu: React.FC = () => {
 
       return (
         <div className='p-4'>
-          <h2 className='text-2xl text-center font-bold mb-4'>
+          <h2 className='text-2xl text-center font-bold mb-4 text-gray-700'>
             {selectedSubcategory} Subcategories
           </h2>
+          <Button
+            onClick={() => {
+              setSelectedCategory(null);
+              setSelectedSubcategory(null);
+              setSelectedSubSubcategory(null);
+            }}
+            className='mb-4'
+          >
+            ⬅️ Go Back
+          </Button>
           <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
             {subSubCategories?.map((subSub) => (
               <div
@@ -167,22 +179,12 @@ const OrderMenu: React.FC = () => {
                     className='absolute inset-0 w-full h-full object-contain'
                   />
                 </div>
-                <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300'>
+                <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-10 text-white text-lg font-semibold'>
                   {subSub.name}
                 </div>
               </div>
             ))}
           </div>
-          <button
-            onClick={() => {
-              setSelectedCategory(null);
-              setSelectedSubcategory(null);
-              setSelectedSubSubcategory(null);
-            }}
-            className='mb-4 bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors duration-300'
-          >
-            Back to Categories
-          </button>
         </div>
       );
     }
@@ -195,17 +197,17 @@ const OrderMenu: React.FC = () => {
 
     return (
       <div className='p-4'>
-        <button
+        <h2 className='text-2xl font-bold mb-4 text-center'>
+          {selectedSubSubcategory} Items
+        </h2>
+        <Button
           onClick={() => {
             setSelectedSubSubcategory(null);
           }}
-          className='mb-4 bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors duration-300'
+          className='mb-4'
         >
-          Back to Subcategories
-        </button>
-        <h2 className='text-2xl font-bold mb-4'>
-          {selectedSubSubcategory} Items
-        </h2>
+          ⬅️ Go Back
+        </Button>
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
           <ItemList items={itemsToRender} addToCart={addToCart} />
         </div>
@@ -230,14 +232,13 @@ const OrderMenu: React.FC = () => {
         </>
       )}
       {selectedCategory && renderItemsByCategory()}
-      <div className='p-4'>
-        <button
-          onClick={submitOrder}
-          className='mt-4 bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded transition-colors duration-300'
-        >
-          Submit Order
-        </button>
-      </div>
+      <Button
+        variant={"secondary"}
+        onClick={submitOrder}
+        className='fixed bottom-10 right-10 px-4 py-2 rounded-full transition-colors duration-300 flex items-center justify-center'
+      >
+        <span className='mr-2'>🛒</span>See Cart
+      </Button>
     </>
   );
 };

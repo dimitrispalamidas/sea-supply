@@ -28,7 +28,7 @@ export interface Item {
 export const categories: Category[] = [
   {
     name: "Personal",
-    imgSrc: "images/categories/personal.jpg",
+    imgSrc: "/images/categories/personal.jpg",
     subcategories: [
       {
         name: "Food",
@@ -128,11 +128,11 @@ export const categories: Category[] = [
       },
       {
         name: "Clothes",
-        imgSrc: "images/subcategories/clothes.jpg",
+        imgSrc: "/images/subcategories/clothes.jpg",
         subSubCategories: [
           {
             name: "Casual",
-            imgSrc: "images/subsubcategories/casual.jpg",
+            imgSrc: "/images/subsubcategories/casual.jpg",
             items: [
               {
                 id: 10,
@@ -140,7 +140,7 @@ export const categories: Category[] = [
                 category: "Casual",
                 description: "Comfortable T-Shirts",
                 price: 10,
-                imgSrc: "images/clothes/casual/t-shirts.jpg",
+                imgSrc: "/images/clothes/casual/t-shirts.jpg",
               },
               {
                 id: 11,
@@ -148,7 +148,7 @@ export const categories: Category[] = [
                 category: "Casual",
                 description: "Stylish jeans",
                 price: 40,
-                imgSrc: "images/clothes/casual/jeans.jpg",
+                imgSrc: "/images/clothes/casual/jeans.jpg",
               },
               {
                 id: 12,
@@ -156,13 +156,13 @@ export const categories: Category[] = [
                 category: "Casual",
                 description: "Comfortable sneakers",
                 price: 50,
-                imgSrc: "images/clothes/casual/sneakers.jpg",
+                imgSrc: "/images/clothes/casual/sneakers.jpg",
               },
             ],
           },
           {
             name: "Formal",
-            imgSrc: "images/subsubcategories/formal.jpg",
+            imgSrc: "/images/subsubcategories/formal.jpg",
             items: [
               {
                 id: 13,
@@ -170,7 +170,7 @@ export const categories: Category[] = [
                 category: "Formal",
                 description: "Elegant suits",
                 price: 200,
-                imgSrc: "images/clothes/formal/suits.jpg",
+                imgSrc: "/images/clothes/formal/suits.jpg",
               },
               {
                 id: 14,
@@ -178,7 +178,7 @@ export const categories: Category[] = [
                 category: "Formal",
                 description: "Beautiful dresses",
                 price: 100,
-                imgSrc: "images/clothes/formal/dresses.jpg",
+                imgSrc: "/images/clothes/formal/dresses.jpg",
               },
               {
                 id: 15,
@@ -186,13 +186,13 @@ export const categories: Category[] = [
                 category: "Formal",
                 description: "Stylish dress shoes",
                 price: 80,
-                imgSrc: "images/clothes/formal/dress-shoes.jpg",
+                imgSrc: "/images/clothes/formal/dress-shoes.jpg",
               },
             ],
           },
           {
             name: "Sportswear",
-            imgSrc: "images/subsubcategories/sportswear.jpg",
+            imgSrc: "/images/subsubcategories/sportswear.jpg",
             items: [
               {
                 id: 16,
@@ -200,7 +200,7 @@ export const categories: Category[] = [
                 category: "Sportswear",
                 description: "Lightweight running shoes",
                 price: 70,
-                imgSrc: "images/clothes/sportswear/running-shoes.jpg",
+                imgSrc: "/images/clothes/sportswear/running-shoes.jpg",
               },
               {
                 id: 17,
@@ -208,7 +208,7 @@ export const categories: Category[] = [
                 category: "Sportswear",
                 description: "Comfortable tracksuits",
                 price: 60,
-                imgSrc: "images/clothes/sportswear/tracksuits.jpg",
+                imgSrc: "/images/clothes/sportswear/tracksuits.jpg",
               },
               {
                 id: 18,
@@ -216,7 +216,7 @@ export const categories: Category[] = [
                 category: "Sportswear",
                 description: "Absorbent sweatbands",
                 price: 15,
-                imgSrc: "images/clothes/sportswear/sweatbands.jpg",
+                imgSrc: "/images/clothes/sportswear/sweatbands.jpg",
               },
             ],
           },
@@ -224,11 +224,11 @@ export const categories: Category[] = [
       },
       {
         name: "Liquid",
-        imgSrc: "images/subcategories/liquid.jpg",
+        imgSrc: "/images/subcategories/liquid.jpg",
         subSubCategories: [
           {
             name: "Beverages",
-            imgSrc: "images/subsubcategories/beverages.jpg",
+            imgSrc: "/images/subsubcategories/beverages.jpg",
             items: [
               {
                 id: 19,
@@ -236,7 +236,7 @@ export const categories: Category[] = [
                 category: "Beverages",
                 description: "Bottled water",
                 price: 1,
-                imgSrc: "images/liquid/beverages/water.jpg",
+                imgSrc: "/images/liquid/beverages/water.jpg",
               },
               {
                 id: 20,
@@ -244,7 +244,7 @@ export const categories: Category[] = [
                 category: "Beverages",
                 description: "Fresh fruit juice",
                 price: 2,
-                imgSrc: "images/liquid/beverages/juice.jpg",
+                imgSrc: "/images/liquid/beverages/juice.jpg",
               },
               {
                 id: 21,
@@ -252,13 +252,13 @@ export const categories: Category[] = [
                 category: "Beverages",
                 description: "Carbonated soda",
                 price: 1.5,
-                imgSrc: "images/liquid/beverages/soda.jpg",
+                imgSrc: "/images/liquid/beverages/soda.jpg",
               },
             ],
           },
           {
             name: "Alcohol",
-            imgSrc: "images/subsubcategories/alcohol.jpg",
+            imgSrc: "/images/subsubcategories/alcohol.jpg",
             items: [
               {
                 id: 22,
@@ -266,7 +266,7 @@ export const categories: Category[] = [
                 category: "Alcohol",
                 description: "Craft beer",
                 price: 3,
-                imgSrc: "images/liquid/alcohol/beer.jpg",
+                imgSrc: "/images/liquid/alcohol/beer.jpg",
               },
               {
                 id: 23,
@@ -274,7 +274,7 @@ export const categories: Category[] = [
                 category: "Alcohol",
                 description: "Red wine",
                 price: 15,
-                imgSrc: "images/liquid/alcohol/wine.jpg",
+                imgSrc: "/images/liquid/alcohol/wine.jpg",
               },
               {
                 id: 24,
@@ -282,13 +282,13 @@ export const categories: Category[] = [
                 category: "Alcohol",
                 description: "Aged whiskey",
                 price: 25,
-                imgSrc: "images/liquid/alcohol/whiskey.jpg",
+                imgSrc: "/images/liquid/alcohol/whiskey.jpg",
               },
             ],
           },
           {
             name: "Cleaning",
-            imgSrc: "images/subsubcategories/cleaning.jpg",
+            imgSrc: "/images/subsubcategories/cleaning.jpg",
             items: [
               {
                 id: 25,
@@ -296,7 +296,7 @@ export const categories: Category[] = [
                 category: "Cleaning",
                 description: "Liquid detergents",
                 price: 5,
-                imgSrc: "images/liquid/cleaning/detergents.jpg",
+                imgSrc: "/images/liquid/cleaning/detergents.jpg",
               },
               {
                 id: 26,
@@ -304,7 +304,7 @@ export const categories: Category[] = [
                 category: "Cleaning",
                 description: "Surface disinfectants",
                 price: 6,
-                imgSrc: "images/liquid/cleaning/disinfectants.jpg",
+                imgSrc: "/images/liquid/cleaning/disinfectants.jpg",
               },
               {
                 id: 27,
@@ -312,7 +312,7 @@ export const categories: Category[] = [
                 category: "Cleaning",
                 description: "Streak-free glass cleaners",
                 price: 4,
-                imgSrc: "images/liquid/cleaning/glass-cleaners.jpg",
+                imgSrc: "/images/liquid/cleaning/glass-cleaners.jpg",
               },
             ],
           },
@@ -320,11 +320,11 @@ export const categories: Category[] = [
       },
       {
         name: "Personal Care",
-        imgSrc: "images/subcategories/personal-care.jpg",
+        imgSrc: "/images/subcategories/personal-care.jpg",
         subSubCategories: [
           {
             name: "Hygiene",
-            imgSrc: "images/subsubcategories/hygiene.jpg",
+            imgSrc: "/images/subsubcategories/hygiene.jpg",
             items: [
               {
                 id: 28,
@@ -332,7 +332,7 @@ export const categories: Category[] = [
                 category: "Hygiene",
                 description: "Fluoride toothpaste",
                 price: 2.5,
-                imgSrc: "images/personal-care/hygiene/toothpaste.jpg",
+                imgSrc: "/images/personal-care/hygiene/toothpaste.jpg",
               },
               {
                 id: 29,
@@ -340,7 +340,7 @@ export const categories: Category[] = [
                 category: "Hygiene",
                 description: "Anti-dandruff shampoo",
                 price: 4.5,
-                imgSrc: "images/personal-care/hygiene/shampoo.jpg",
+                imgSrc: "/images/personal-care/hygiene/shampoo.jpg",
               },
               {
                 id: 30,
@@ -348,13 +348,13 @@ export const categories: Category[] = [
                 category: "Hygiene",
                 description: "Moisturizing soap",
                 price: 1.5,
-                imgSrc: "images/personal-care/hygiene/soap.jpg",
+                imgSrc: "/images/personal-care/hygiene/soap.jpg",
               },
             ],
           },
           {
             name: "Cosmetics",
-            imgSrc: "images/subsubcategories/cosmetics.jpg",
+            imgSrc: "/images/subsubcategories/cosmetics.jpg",
             items: [
               {
                 id: 31,
@@ -362,7 +362,7 @@ export const categories: Category[] = [
                 category: "Cosmetics",
                 description: "Long-lasting lipstick",
                 price: 12,
-                imgSrc: "images/personal-care/cosmetics/lipstick.jpg",
+                imgSrc: "/images/personal-care/cosmetics/lipstick.jpg",
               },
               {
                 id: 32,
@@ -370,7 +370,7 @@ export const categories: Category[] = [
                 category: "Cosmetics",
                 description: "Liquid foundation",
                 price: 15,
-                imgSrc: "images/personal-care/cosmetics/foundation.jpg",
+                imgSrc: "/images/personal-care/cosmetics/foundation.jpg",
               },
               {
                 id: 33,
@@ -378,13 +378,13 @@ export const categories: Category[] = [
                 category: "Cosmetics",
                 description: "Waterproof mascara",
                 price: 10,
-                imgSrc: "images/personal-care/cosmetics/mascara.jpg",
+                imgSrc: "/images/personal-care/cosmetics/mascara.jpg",
               },
             ],
           },
           {
             name: "Skincare",
-            imgSrc: "images/subsubcategories/skincare.jpg",
+            imgSrc: "/images/subsubcategories/skincare.jpg",
             items: [
               {
                 id: 34,
@@ -392,7 +392,7 @@ export const categories: Category[] = [
                 category: "Skincare",
                 description: "Hydrating moisturizers",
                 price: 18,
-                imgSrc: "images/personal-care/skincare/moisturizers.jpg",
+                imgSrc: "/images/personal-care/skincare/moisturizers.jpg",
               },
               {
                 id: 35,
@@ -400,7 +400,7 @@ export const categories: Category[] = [
                 category: "Skincare",
                 description: "SPF 50 sunscreen",
                 price: 20,
-                imgSrc: "images/personal-care/skincare/sunscreen.jpg",
+                imgSrc: "/images/personal-care/skincare/sunscreen.jpg",
               },
               {
                 id: 36,
@@ -408,7 +408,7 @@ export const categories: Category[] = [
                 category: "Skincare",
                 description: "Anti-aging serums",
                 price: 25,
-                imgSrc: "images/personal-care/skincare/serums.jpg",
+                imgSrc: "/images/personal-care/skincare/serums.jpg",
               },
             ],
           },
@@ -416,11 +416,11 @@ export const categories: Category[] = [
       },
       {
         name: "Electronic Devices",
-        imgSrc: "images/subcategories/electronic-devices.jpg",
+        imgSrc: "/images/subcategories/electronic-devices.jpg",
         subSubCategories: [
           {
             name: "Mobile Devices",
-            imgSrc: "images/subsubcategories/mobile-devices.jpg",
+            imgSrc: "/images/subsubcategories/mobile-devices.jpg",
             items: [
               {
                 id: 37,
@@ -428,7 +428,7 @@ export const categories: Category[] = [
                 category: "Mobile Devices",
                 description: "Latest smartphones",
                 price: 700,
-                imgSrc: "images/electronics/mobile-devices/smartphones.jpg",
+                imgSrc: "/images/electronics/mobile-devices/smartphones.jpg",
               },
               {
                 id: 38,
@@ -436,7 +436,7 @@ export const categories: Category[] = [
                 category: "Mobile Devices",
                 description: "High-resolution tablets",
                 price: 500,
-                imgSrc: "images/electronics/mobile-devices/tablets.jpg",
+                imgSrc: "/images/electronics/mobile-devices/tablets.jpg",
               },
               {
                 id: 39,
@@ -444,13 +444,13 @@ export const categories: Category[] = [
                 category: "Mobile Devices",
                 description: "Smartwatches with fitness tracking",
                 price: 250,
-                imgSrc: "images/electronics/mobile-devices/smartwatches.jpg",
+                imgSrc: "/images/electronics/mobile-devices/smartwatches.jpg",
               },
             ],
           },
           {
             name: "Computers",
-            imgSrc: "images/subsubcategories/computers.jpg",
+            imgSrc: "/images/subsubcategories/computers.jpg",
             items: [
               {
                 id: 40,
@@ -458,7 +458,7 @@ export const categories: Category[] = [
                 category: "Computers",
                 description: "High-performance laptops",
                 price: 1200,
-                imgSrc: "images/electronics/computers/laptops.jpg",
+                imgSrc: "/images/electronics/computers/laptops.jpg",
               },
               {
                 id: 41,
@@ -466,7 +466,7 @@ export const categories: Category[] = [
                 category: "Computers",
                 description: "Powerful desktop computers",
                 price: 1500,
-                imgSrc: "images/electronics/computers/desktops.jpg",
+                imgSrc: "/images/electronics/computers/desktops.jpg",
               },
               {
                 id: 42,
@@ -474,13 +474,13 @@ export const categories: Category[] = [
                 category: "Computers",
                 description: "HD monitors",
                 price: 300,
-                imgSrc: "images/electronics/computers/monitors.jpg",
+                imgSrc: "/images/electronics/computers/monitors.jpg",
               },
             ],
           },
           {
             name: "Accessories",
-            imgSrc: "images/subsubcategories/accessories.jpg",
+            imgSrc: "/images/subsubcategories/accessories.jpg",
             items: [
               {
                 id: 43,
@@ -488,7 +488,7 @@ export const categories: Category[] = [
                 category: "Accessories",
                 description: "Fast chargers",
                 price: 20,
-                imgSrc: "images/electronics/accessories/chargers.jpg",
+                imgSrc: "/images/electronics/accessories/chargers.jpg",
               },
               {
                 id: 44,
@@ -496,7 +496,7 @@ export const categories: Category[] = [
                 category: "Accessories",
                 description: "Noise-canceling headphones",
                 price: 100,
-                imgSrc: "images/electronics/accessories/headphones.jpg",
+                imgSrc: "/images/electronics/accessories/headphones.jpg",
               },
               {
                 id: 45,
@@ -504,7 +504,7 @@ export const categories: Category[] = [
                 category: "Accessories",
                 description: "Durable cables",
                 price: 10,
-                imgSrc: "images/electronics/accessories/cables.jpg",
+                imgSrc: "/images/electronics/accessories/cables.jpg",
               },
             ],
           },
@@ -514,15 +514,15 @@ export const categories: Category[] = [
   },
   {
     name: "Professional",
-    imgSrc: "images/categories/professional.jpg",
+    imgSrc: "/images/categories/professional.jpg",
     subcategories: [
       {
         name: "Hoses",
-        imgSrc: "images/subcategories/hoses.jpg",
+        imgSrc: "/images/subcategories/hoses.jpg",
         subSubCategories: [
           {
             name: "Garden Hoses",
-            imgSrc: "images/subsubcategories/garden-hoses.jpg",
+            imgSrc: "/images/subsubcategories/garden-hoses.jpg",
             items: [
               {
                 id: 46,
@@ -530,7 +530,7 @@ export const categories: Category[] = [
                 category: "Garden Hoses",
                 description: "Expandable garden hose",
                 price: 30,
-                imgSrc: "images/professional/hoses/garden/expandable.jpg",
+                imgSrc: "/images/professional/hoses/garden/expandable.jpg",
               },
               {
                 id: 47,
@@ -538,7 +538,7 @@ export const categories: Category[] = [
                 category: "Garden Hoses",
                 description: "Durable rubber hose",
                 price: 25,
-                imgSrc: "images/professional/hoses/garden/rubber.jpg",
+                imgSrc: "/images/professional/hoses/garden/rubber.jpg",
               },
               {
                 id: 48,
@@ -546,13 +546,13 @@ export const categories: Category[] = [
                 category: "Garden Hoses",
                 description: "Flexible vinyl hose",
                 price: 20,
-                imgSrc: "images/professional/hoses/garden/vinyl.jpg",
+                imgSrc: "/images/professional/hoses/garden/vinyl.jpg",
               },
             ],
           },
           {
             name: "Industrial Hoses",
-            imgSrc: "images/subsubcategories/industrial-hoses.jpg",
+            imgSrc: "/images/subsubcategories/industrial-hoses.jpg",
             items: [
               {
                 id: 49,
@@ -560,7 +560,7 @@ export const categories: Category[] = [
                 category: "Industrial Hoses",
                 description: "High-pressure air hose",
                 price: 50,
-                imgSrc: "images/professional/hoses/industrial/air.jpg",
+                imgSrc: "/images/professional/hoses/industrial/air.jpg",
               },
               {
                 id: 50,
@@ -568,7 +568,7 @@ export const categories: Category[] = [
                 category: "Industrial Hoses",
                 description: "Heavy-duty water hose",
                 price: 40,
-                imgSrc: "images/professional/hoses/industrial/water.jpg",
+                imgSrc: "/images/professional/hoses/industrial/water.jpg",
               },
               {
                 id: 51,
@@ -576,7 +576,7 @@ export const categories: Category[] = [
                 category: "Industrial Hoses",
                 description: "Chemical-resistant hose",
                 price: 60,
-                imgSrc: "images/professional/hoses/industrial/chemical.jpg",
+                imgSrc: "/images/professional/hoses/industrial/chemical.jpg",
               },
             ],
           },
@@ -584,11 +584,11 @@ export const categories: Category[] = [
       },
       {
         name: "Charts",
-        imgSrc: "images/subcategories/charts.jpg",
+        imgSrc: "/images/subcategories/charts.jpg",
         subSubCategories: [
           {
             name: "Financial Charts",
-            imgSrc: "images/subsubcategories/financial-charts.jpg",
+            imgSrc: "/images/subsubcategories/financial-charts.jpg",
             items: [
               {
                 id: 52,
@@ -596,7 +596,7 @@ export const categories: Category[] = [
                 category: "Financial Charts",
                 description: "Detailed stock charts",
                 price: 10,
-                imgSrc: "images/professional/charts/financial/stock.jpg",
+                imgSrc: "/images/professional/charts/financial/stock.jpg",
               },
               {
                 id: 53,
@@ -604,7 +604,7 @@ export const categories: Category[] = [
                 category: "Financial Charts",
                 description: "Annual revenue charts",
                 price: 12,
-                imgSrc: "images/professional/charts/financial/revenue.jpg",
+                imgSrc: "/images/professional/charts/financial/revenue.jpg",
               },
               {
                 id: 54,
@@ -612,13 +612,13 @@ export const categories: Category[] = [
                 category: "Financial Charts",
                 description: "Expense tracking charts",
                 price: 8,
-                imgSrc: "images/professional/charts/financial/expense.jpg",
+                imgSrc: "/images/professional/charts/financial/expense.jpg",
               },
             ],
           },
           {
             name: "Project Management",
-            imgSrc: "images/subsubcategories/project-management.jpg",
+            imgSrc: "/images/subsubcategories/project-management.jpg",
             items: [
               {
                 id: 55,
@@ -627,7 +627,7 @@ export const categories: Category[] = [
                 description: "Project timeline charts",
                 price: 15,
                 imgSrc:
-                  "images/professional/charts/project-management/gantt.jpg",
+                  "/images/professional/charts/project-management/gantt.jpg",
               },
               {
                 id: 56,
@@ -636,7 +636,7 @@ export const categories: Category[] = [
                 description: "Project evaluation charts",
                 price: 18,
                 imgSrc:
-                  "images/professional/charts/project-management/pert.jpg",
+                  "/images/professional/charts/project-management/pert.jpg",
               },
               {
                 id: 57,
@@ -645,7 +645,7 @@ export const categories: Category[] = [
                 description: "Process flowcharts",
                 price: 12,
                 imgSrc:
-                  "images/professional/charts/project-management/flow.jpg",
+                  "/images/professional/charts/project-management/flow.jpg",
               },
             ],
           },
@@ -653,11 +653,11 @@ export const categories: Category[] = [
       },
       {
         name: "Mooring Ropes",
-        imgSrc: "images/subcategories/mooring-ropes.jpg",
+        imgSrc: "/images/subcategories/mooring-ropes.jpg",
         subSubCategories: [
           {
             name: "Nylon Ropes",
-            imgSrc: "images/subsubcategories/nylon-ropes.jpg",
+            imgSrc: "/images/subsubcategories/nylon-ropes.jpg",
             items: [
               {
                 id: 58,
@@ -665,7 +665,7 @@ export const categories: Category[] = [
                 category: "Nylon Ropes",
                 description: "Twisted nylon rope",
                 price: 20,
-                imgSrc: "images/professional/mooring-ropes/nylon/twisted.jpg",
+                imgSrc: "/images/professional/mooring-ropes/nylon/twisted.jpg",
               },
               {
                 id: 59,
@@ -673,7 +673,7 @@ export const categories: Category[] = [
                 category: "Nylon Ropes",
                 description: "Braided nylon rope",
                 price: 25,
-                imgSrc: "images/professional/mooring-ropes/nylon/braided.jpg",
+                imgSrc: "/images/professional/mooring-ropes/nylon/braided.jpg",
               },
               {
                 id: 60,
@@ -682,13 +682,13 @@ export const categories: Category[] = [
                 description: "Double-braided nylon rope",
                 price: 30,
                 imgSrc:
-                  "images/professional/mooring-ropes/nylon/double-braided.jpg",
+                  "/images/professional/mooring-ropes/nylon/double-braided.jpg",
               },
             ],
           },
           {
             name: "Polyester Ropes",
-            imgSrc: "images/subsubcategories/polyester-ropes.jpg",
+            imgSrc: "/images/subsubcategories/polyester-ropes.jpg",
             items: [
               {
                 id: 61,
@@ -697,7 +697,7 @@ export const categories: Category[] = [
                 description: "Solid braid polyester rope",
                 price: 15,
                 imgSrc:
-                  "images/professional/mooring-ropes/polyester/solid-braid.jpg",
+                  "/images/professional/mooring-ropes/polyester/solid-braid.jpg",
               },
               {
                 id: 62,
@@ -706,7 +706,7 @@ export const categories: Category[] = [
                 description: "Hollow braid polyester rope",
                 price: 18,
                 imgSrc:
-                  "images/professional/mooring-ropes/polyester/hollow-braid.jpg",
+                  "/images/professional/mooring-ropes/polyester/hollow-braid.jpg",
               },
               {
                 id: 63,
@@ -715,7 +715,7 @@ export const categories: Category[] = [
                 description: "Diamond braid polyester rope",
                 price: 22,
                 imgSrc:
-                  "images/professional/mooring-ropes/polyester/diamond-braid.jpg",
+                  "/images/professional/mooring-ropes/polyester/diamond-braid.jpg",
               },
             ],
           },
@@ -723,11 +723,11 @@ export const categories: Category[] = [
       },
       {
         name: "Life-Vests",
-        imgSrc: "images/subcategories/life-vests.jpg",
+        imgSrc: "/images/subcategories/life-vests.jpg",
         subSubCategories: [
           {
             name: "Adult Life-Vests",
-            imgSrc: "images/subsubcategories/adult-life-vests.jpg",
+            imgSrc: "/images/subsubcategories/adult-life-vests.jpg",
             items: [
               {
                 id: 64,
@@ -735,7 +735,7 @@ export const categories: Category[] = [
                 category: "Adult Life-Vests",
                 description: "Foam life-vest",
                 price: 40,
-                imgSrc: "images/professional/life-vests/adult/foam.jpg",
+                imgSrc: "/images/professional/life-vests/adult/foam.jpg",
               },
               {
                 id: 65,
@@ -743,7 +743,7 @@ export const categories: Category[] = [
                 category: "Adult Life-Vests",
                 description: "Inflatable life-vest",
                 price: 60,
-                imgSrc: "images/professional/life-vests/adult/inflatable.jpg",
+                imgSrc: "/images/professional/life-vests/adult/inflatable.jpg",
               },
               {
                 id: 66,
@@ -751,13 +751,13 @@ export const categories: Category[] = [
                 category: "Adult Life-Vests",
                 description: "Hybrid life-vest",
                 price: 70,
-                imgSrc: "images/professional/life-vests/adult/hybrid.jpg",
+                imgSrc: "/images/professional/life-vests/adult/hybrid.jpg",
               },
             ],
           },
           {
             name: "Child Life-Vests",
-            imgSrc: "images/subsubcategories/child-life-vests.jpg",
+            imgSrc: "/images/subsubcategories/child-life-vests.jpg",
             items: [
               {
                 id: 67,
@@ -765,7 +765,7 @@ export const categories: Category[] = [
                 category: "Child Life-Vests",
                 description: "Vest style life-vest for children",
                 price: 35,
-                imgSrc: "images/professional/life-vests/child/vest-style.jpg",
+                imgSrc: "/images/professional/life-vests/child/vest-style.jpg",
               },
               {
                 id: 68,
@@ -774,7 +774,7 @@ export const categories: Category[] = [
                 description: "Floatation suits for children",
                 price: 45,
                 imgSrc:
-                  "images/professional/life-vests/child/floatation-suits.jpg",
+                  "/images/professional/life-vests/child/floatation-suits.jpg",
               },
               {
                 id: 69,
@@ -782,7 +782,7 @@ export const categories: Category[] = [
                 category: "Child Life-Vests",
                 description: "Floatation arm bands for children",
                 price: 15,
-                imgSrc: "images/professional/life-vests/child/arm-bands.jpg",
+                imgSrc: "/images/professional/life-vests/child/arm-bands.jpg",
               },
             ],
           },
