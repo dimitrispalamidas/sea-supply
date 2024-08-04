@@ -6,7 +6,7 @@ import { SidebarItem } from "./sidebar-item";
 
 type SidebarProps = {
   className?: string;
-  handleSheetClose: () => void;
+  handleSheetClose?: () => void;
 };
 
 export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {

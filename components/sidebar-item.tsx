@@ -8,7 +8,7 @@ type Props = {
   label: string;
   icon: React.ReactNode;
   href: string;
-  handleSheetClose: () => void;
+  handleSheetClose?: () => void; // Make handleSheetClose optional
 };
 
 export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
@@ -16,7 +16,9 @@ export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
   const active = pathname === href;
 
   const handleClick = () => {
-    handleSheetClose();
+    if (handleSheetClose) {
+      handleSheetClose();
+    }
   };
 
   return (
