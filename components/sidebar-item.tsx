@@ -1,5 +1,3 @@
-"use client";
-
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -20,7 +18,7 @@ export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
   };
 
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       <Button
         variant={active ? "sidebarOutline" : "sidebar"}
         className='justify-start h-[52px] w-full flex items-center'
