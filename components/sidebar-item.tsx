@@ -25,10 +25,10 @@ export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
     <Link href={href} passHref>
       <Button
         variant={active ? "sidebarOutline" : "sidebar"}
-        className='justify-start h-[52px] w-full flex items-center'
+        className='justify-start h-[52px] w-full flex items-center flex-col'
         onClick={handleClick}
       >
-        <div className='mr-5'>{icon}</div>
+        <div className=''>{icon}</div>
         {label}
       </Button>
     </Link>
