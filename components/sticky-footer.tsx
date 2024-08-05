@@ -1,5 +1,6 @@
 import {
   ChevronsRightLeftIcon,
+  CloudSun,
   Files,
   Home,
   Newspaper,
@@ -22,7 +23,7 @@ export const StickyFooter = ({ className }: StickyFooterProps) => {
         <div className='pl-5'>
           <SidebarItem label='Order' href='/order' icon={<ShoppingCart />} />
         </div>
-        <SidebarItem label='Certificates' href='/home' icon={<Files />} />
+        <SidebarItem label='Weather' href='/home' icon={<CloudSun />} />
         <SidebarItem label='Profile' href='/home' icon={<User />} />
       </div>
     </div>
