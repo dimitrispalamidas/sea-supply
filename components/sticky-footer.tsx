@@ -20,9 +20,7 @@ export const StickyFooter = ({ className }: StickyFooterProps) => {
       <div className='flex justify-around py-2'>
         <SidebarItem label='Home' href='/home' icon={<Home />} />
         <SidebarItem label='News' href='/home' icon={<Newspaper />} />
-        <div className='pl-5'>
-          <SidebarItem label='Order' href='/order' icon={<ShoppingCart />} />
-        </div>
+        <SidebarItem label='Order' href='/order' icon={<ShoppingCart />} />
         <SidebarItem label='Weather' href='/home' icon={<CloudSun />} />
         <SidebarItem label='Profile' href='/home' icon={<User />} />
       </div>

@@ -235,7 +235,7 @@ const OrderMenu: React.FC = () => {
       <Button
         variant={"secondary"}
         onClick={submitOrder}
-        className='fixed bottom-10 right-10 px-4 py-2 rounded-full transition-colors duration-300 flex items-center justify-center'
+        className='fixed bottom-10 right-10 hidden md:flex'
       >
         <span className='mr-2'>🛒</span>See Cart
       </Button>
