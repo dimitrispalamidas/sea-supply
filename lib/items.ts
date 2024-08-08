@@ -32,7 +32,7 @@ export const categories: Category[] = [
     subcategories: [
       {
         name: "Food",
-        imgSrc: "/images/subcategories/food.jpg",
+        imgSrc: "/items/subcategories/food.jpg",
         subSubCategories: [
           {
             name: "Fruits",
@@ -126,9 +126,98 @@ export const categories: Category[] = [
           },
         ],
       },
+
+      {
+        name: "Beverages",
+        imgSrc: "/items/subcategories/beverages.jpg",
+        subSubCategories: [
+          {
+            name: "Water",
+            imgSrc: "/images/subsubcategories/water.jpg",
+            items: [
+              {
+                id: 19,
+                name: "Bottled Water",
+                category: "Water",
+                description: "Pure bottled water",
+                price: 1,
+                imgSrc: "/images/liquid/beverages/water.jpg",
+              },
+              {
+                id: 20,
+                name: "Soda",
+                category: "Water",
+                description: "Refreshing soda drink",
+                price: 2,
+                imgSrc: "/images/liquid/beverages/soda.jpg",
+              },
+            ],
+          },
+          {
+            name: "Juice",
+            imgSrc: "/images/subsubcategories/juice.jpg",
+            items: [
+              {
+                id: 25,
+                name: "Orange Juice",
+                category: "Juice",
+                description: "Fresh orange juice",
+                price: 5,
+                imgSrc: "/images/liquid/beverages/orange-juice.jpg",
+              },
+              {
+                id: 26,
+                name: "Apple Juice",
+                category: "Juice",
+                description: "Crisp apple juice",
+                price: 6,
+                imgSrc: "/images/liquid/beverages/apple-juice.jpg",
+              },
+              {
+                id: 27,
+                name: "Mixed - 9 Fruits",
+                category: "Juice",
+                description: "Juice blend of 9 fruits",
+                price: 4,
+                imgSrc: "/images/liquid/beverages/mixed-juice.jpg",
+              },
+            ],
+          },
+          {
+            name: "Alcohol",
+            imgSrc: "/images/subsubcategories/alcohol.jpg",
+            items: [
+              {
+                id: 22,
+                name: "Beer",
+                category: "Alcohol",
+                description: "Craft beer",
+                price: 3,
+                imgSrc: "/images/liquid/alcohol/beer.jpg",
+              },
+              {
+                id: 23,
+                name: "Wine",
+                category: "Alcohol",
+                description: "Fine red wine",
+                price: 15,
+                imgSrc: "/images/liquid/alcohol/wine.jpg",
+              },
+              {
+                id: 24,
+                name: "Whiskey",
+                category: "Alcohol",
+                description: "Aged whiskey",
+                price: 25,
+                imgSrc: "/images/liquid/alcohol/whiskey.jpg",
+              },
+            ],
+          },
+        ],
+      },
       {
         name: "Clothes",
-        imgSrc: "/images/subcategories/clothes.jpg",
+        imgSrc: "/items/subcategories/clothes.jpg",
         subSubCategories: [
           {
             name: "Casual",
@@ -223,104 +312,8 @@ export const categories: Category[] = [
         ],
       },
       {
-        name: "Liquid",
-        imgSrc: "/images/subcategories/liquid.jpg",
-        subSubCategories: [
-          {
-            name: "Beverages",
-            imgSrc: "/images/subsubcategories/beverages.jpg",
-            items: [
-              {
-                id: 19,
-                name: "Water",
-                category: "Beverages",
-                description: "Bottled water",
-                price: 1,
-                imgSrc: "/images/liquid/beverages/water.jpg",
-              },
-              {
-                id: 20,
-                name: "Juice",
-                category: "Beverages",
-                description: "Fresh fruit juice",
-                price: 2,
-                imgSrc: "/images/liquid/beverages/juice.jpg",
-              },
-              {
-                id: 21,
-                name: "Soda",
-                category: "Beverages",
-                description: "Carbonated soda",
-                price: 1.5,
-                imgSrc: "/images/liquid/beverages/soda.jpg",
-              },
-            ],
-          },
-          {
-            name: "Alcohol",
-            imgSrc: "/images/subsubcategories/alcohol.jpg",
-            items: [
-              {
-                id: 22,
-                name: "Beer",
-                category: "Alcohol",
-                description: "Craft beer",
-                price: 3,
-                imgSrc: "/images/liquid/alcohol/beer.jpg",
-              },
-              {
-                id: 23,
-                name: "Wine",
-                category: "Alcohol",
-                description: "Red wine",
-                price: 15,
-                imgSrc: "/images/liquid/alcohol/wine.jpg",
-              },
-              {
-                id: 24,
-                name: "Whiskey",
-                category: "Alcohol",
-                description: "Aged whiskey",
-                price: 25,
-                imgSrc: "/images/liquid/alcohol/whiskey.jpg",
-              },
-            ],
-          },
-          {
-            name: "Cleaning",
-            imgSrc: "/images/subsubcategories/cleaning.jpg",
-            items: [
-              {
-                id: 25,
-                name: "Detergents",
-                category: "Cleaning",
-                description: "Liquid detergents",
-                price: 5,
-                imgSrc: "/images/liquid/cleaning/detergents.jpg",
-              },
-              {
-                id: 26,
-                name: "Disinfectants",
-                category: "Cleaning",
-                description: "Surface disinfectants",
-                price: 6,
-                imgSrc: "/images/liquid/cleaning/disinfectants.jpg",
-              },
-              {
-                id: 27,
-                name: "Glass Cleaners",
-                category: "Cleaning",
-                description: "Streak-free glass cleaners",
-                price: 4,
-                imgSrc: "/images/liquid/cleaning/glass-cleaners.jpg",
-              },
-            ],
-          },
-        ],
-      },
-      {
         name: "Personal Care",
-        imgSrc: "/images/subcategories/personal-care.jpg",
+        imgSrc: "/items/subcategories/personal-care.jpg",
         subSubCategories: [
           {
             name: "Hygiene",
@@ -416,7 +409,7 @@ export const categories: Category[] = [
       },
       {
         name: "Electronic Devices",
-        imgSrc: "/images/subcategories/electronic-devices.jpg",
+        imgSrc: "/items/subcategories/e-devices.png",
         subSubCategories: [
           {
             name: "Mobile Devices",
@@ -518,7 +511,7 @@ export const categories: Category[] = [
     subcategories: [
       {
         name: "Hoses",
-        imgSrc: "/images/subcategories/hoses.jpg",
+        imgSrc: "/items/subcategories/hoses.jpg",
         subSubCategories: [
           {
             name: "Garden Hoses",
@@ -584,7 +577,7 @@ export const categories: Category[] = [
       },
       {
         name: "Charts",
-        imgSrc: "/images/subcategories/charts.jpg",
+        imgSrc: "/items/subcategories/charts.jpg",
         subSubCategories: [
           {
             name: "Financial Charts",
@@ -653,7 +646,7 @@ export const categories: Category[] = [
       },
       {
         name: "Mooring Ropes",
-        imgSrc: "/images/subcategories/mooring-ropes.jpg",
+        imgSrc: "/items/subcategories/mooring-ropes.jpg",
         subSubCategories: [
           {
             name: "Nylon Ropes",
@@ -723,7 +716,7 @@ export const categories: Category[] = [
       },
       {
         name: "Life-Vests",
-        imgSrc: "/images/subcategories/life-vests.jpg",
+        imgSrc: "/items/subcategories/life-vests.jpg",
         subSubCategories: [
           {
             name: "Adult Life-Vests",

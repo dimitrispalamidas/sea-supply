@@ -90,8 +90,16 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
               setSelectedSubcategory(sub.name);
               setSelectedSubSubcategory(null);
             }}
+            className='flex justify-between items-center'
           >
-            {sub.name}
+            <span className='text-left'>{sub.name}</span>
+            <Image
+              width={48}
+              height={48}
+              src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
+              alt={sub.name}
+              className='ml-2 rounded'
+            />
           </Button>
         ))}
       </div>
@@ -99,13 +107,42 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
   );
 };
 
+// const ProfessionalItemsSection: React.FC<SectionProps> = ({
+//   setSelectedCategory,
+//   setSelectedSubcategory,
+//   setSelectedSubSubcategory,
+// }) => {
+//   return (
+//     <div className='p-4 mt-10'>
+//       <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
+//         Professional Items
+//       </h2>
+//       <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
+//         {categories[1]?.subcategories?.map((sub) => (
+//           <Button
+//             key={sub.name}
+//             variant={"primary"}
+//             onClick={() => {
+//               setSelectedCategory("Professional");
+//               setSelectedSubcategory(sub.name);
+//               setSelectedSubSubcategory(null);
+//             }}
+//           >
+//             {sub.name}
+//           </Button>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
 const ProfessionalItemsSection: React.FC<SectionProps> = ({
   setSelectedCategory,
   setSelectedSubcategory,
   setSelectedSubSubcategory,
 }) => {
   return (
-    <div className='p-4 mt-10'>
+    <div className='p-4'>
       <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
         Professional Items
       </h2>
@@ -115,12 +152,20 @@ const ProfessionalItemsSection: React.FC<SectionProps> = ({
             key={sub.name}
             variant={"primary"}
             onClick={() => {
-              setSelectedCategory("Professional");
+              setSelectedCategory("Personal");
               setSelectedSubcategory(sub.name);
               setSelectedSubSubcategory(null);
             }}
+            className='flex justify-between items-center'
           >
-            {sub.name}
+            <span className='text-left'>{sub.name}</span>
+            <Image
+              width={48}
+              height={48}
+              src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
+              alt={sub.name}
+              className='ml-2 rounded'
+            />
           </Button>
         ))}
       </div>
