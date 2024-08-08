@@ -92,13 +92,13 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
             }}
             className='flex justify-between items-center'
           >
-            <span className='text-left'>{sub.name}</span>
+            {sub.name}
             <Image
               width={48}
               height={48}
               src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
               alt={sub.name}
-              className='ml-2 rounded'
+              className='rounded'
             />
           </Button>
         ))}
@@ -106,35 +106,6 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
     </div>
   );
 };
-
-// const ProfessionalItemsSection: React.FC<SectionProps> = ({
-//   setSelectedCategory,
-//   setSelectedSubcategory,
-//   setSelectedSubSubcategory,
-// }) => {
-//   return (
-//     <div className='p-4 mt-10'>
-//       <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
-//         Professional Items
-//       </h2>
-//       <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-//         {categories[1]?.subcategories?.map((sub) => (
-//           <Button
-//             key={sub.name}
-//             variant={"primary"}
-//             onClick={() => {
-//               setSelectedCategory("Professional");
-//               setSelectedSubcategory(sub.name);
-//               setSelectedSubSubcategory(null);
-//             }}
-//           >
-//             {sub.name}
-//           </Button>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
 
 const ProfessionalItemsSection: React.FC<SectionProps> = ({
   setSelectedCategory,
@@ -158,13 +129,13 @@ const ProfessionalItemsSection: React.FC<SectionProps> = ({
             }}
             className='flex justify-between items-center'
           >
-            <span className='text-left'>{sub.name}</span>
+            {sub.name}
             <Image
               width={48}
               height={48}
               src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
               alt={sub.name}
-              className='ml-2 rounded'
+              className='rounded'
             />
           </Button>
         ))}
