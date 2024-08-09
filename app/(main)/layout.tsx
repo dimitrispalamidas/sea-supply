@@ -1,4 +1,3 @@
-import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { StickyFooter } from "@/components/sticky-footer";
 
@@ -8,14 +7,21 @@ type Props = {
 
 const MainLayout = ({ children }: Props) => {
   return (
-    <>
-      {/* <MobileHeader /> */}
-      <Sidebar className='hidden md:flex' />
-      <main className='md:pl-[256px] h-full'>
-        <div className='max-w-[1056px] mx-auto pt-6 h-full'>{children}</div>
-      </main>
-      <StickyFooter className='md:hidden' />
-    </>
+    <div className='relative min-h-screen'>
+      <div
+        className='absolute inset-0 bg-center bg-cover z-0'
+        style={{
+          backgroundImage: "url('/background-image.jpg')",
+        }}
+      />
+      <div className='relative z-10 bg-opacity-90'>
+        <Sidebar className='hidden md:flex' />
+        <main className='md:pl-[256px]'>
+          <div className='mx-auto pt-6'>{children}</div>
+        </main>
+        <StickyFooter className='md:hidden' />
+      </div>
+    </div>
   );
 };
 

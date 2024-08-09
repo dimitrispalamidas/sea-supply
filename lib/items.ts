@@ -408,7 +408,7 @@ export const categories: Category[] = [
         ],
       },
       {
-        name: "Electronic Devices",
+        name: "E-Devices",
         imgSrc: "/items/subcategories/e-devices.png",
         subSubCategories: [
           {

@@ -3,17 +3,27 @@
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type Props = {
   label: string;
   icon: React.ReactNode;
   href: string;
-  handleSheetClose?: () => void; // Make handleSheetClose optional
+  handleSheetClose?: () => void;
+  className?: string;
+  buttonClassName?: string;
 };
 
-export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
+export const SidebarItem = ({
+  label,
+  icon,
+  href,
+  handleSheetClose,
+  className,
+  buttonClassName,
+}: Props) => {
   const pathname = usePathname();
-  const active = pathname === href;
+  const isActive = pathname === href;
 
   const handleClick = () => {
     if (handleSheetClose) {
@@ -24,12 +34,16 @@ export const SidebarItem = ({ label, icon, href, handleSheetClose }: Props) => {
   return (
     <Link href={href} passHref>
       <Button
-        variant={active ? "sidebarOutline" : "sidebar"}
-        className='justify-start h-[52px] w-full flex items-center flex-col'
+        variant={isActive ? "default" : "sidebar"}
+        className={cn(
+          "justify-start h-[52px] w-full flex items-center",
+          className
+        )}
         onClick={handleClick}
+        size='sm'
       >
-        <div className=''>{icon}</div>
-        {label}
+        {icon}
+        <span className={buttonClassName}>{label}</span>
       </Button>
     </Link>
   );

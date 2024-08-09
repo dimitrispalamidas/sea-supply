@@ -84,7 +84,7 @@ const PersonalItemsSection: React.FC<SectionProps> = ({
         {categories[0]?.subcategories?.map((sub) => (
           <div key={sub.name} className='flex justify-center'>
             <Button
-              variant={"primary"}
+              variant={"default"}
               size={"lg"}
               onClick={() => {
                 setSelectedCategory("Personal");
@@ -123,7 +123,7 @@ const ProfessionalItemsSection: React.FC<SectionProps> = ({
         {categories[1]?.subcategories?.map((sub) => (
           <div key={sub.name} className='flex justify-center'>
             <Button
-              variant={"primary"}
+              variant={"default"}
               size={"lg"}
               onClick={() => {
                 setSelectedCategory("Personal");
