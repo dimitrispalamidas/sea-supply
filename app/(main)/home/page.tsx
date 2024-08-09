@@ -10,7 +10,7 @@ interface NewsArticle {
   title: string;
   description: string;
   url: string;
-  image: string | null;
+  socialimage: string | null;
 }
 
 const NewsCarousel = ({ articles }: { articles: NewsArticle[] }) => {
@@ -28,11 +28,11 @@ const NewsCarousel = ({ articles }: { articles: NewsArticle[] }) => {
         <div key={index} className='p-4 border rounded shadow'>
           <h3 className='text-lg font-semibold'>{article.title}</h3>
           <p className='text-gray-800'>{article.description}</p>
-          {article.image ? (
+          {article.socialimage ? (
             <div className='relative w-full h-56'>
               <Image
                 alt={article.title}
-                src={article.image}
+                src={article.socialimage}
                 layout='fill'
                 objectFit='cover'
                 className='rounded'
@@ -60,20 +60,50 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // useEffect(() => {
+  //   const fetchNews = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://gnews.io/api/v4/top-headlines",
+  //         {
+  //           params: {
+  //             token: "00ffdc031906f952da33636a53812a41",
+  //             lang: "en",
+  //             max: 5,
+  //           },
+  //         }
+  //       );
+  //       setNews(response.data.articles);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       if (err instanceof Error) {
+  //         setError(err.message);
+  //       } else {
+  //         setError("An unknown error occurred");
+  //       }
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchNews();
+  // }, []);
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "https://gnews.io/api/v4/top-headlines",
+          "https://api.gdeltproject.org/api/v2/doc/doc?query=latestnews",
           {
             params: {
-              token: "00ffdc031906f952da33636a53812a41",
-              lang: "en",
-              max: 5,
+              query: "latest news", // Customize your query as needed
+              mode: "ArtList", // Use ArtList to get articles
+              maxrecords: 20, // Limit the number of records
+              format: "json", // Get the data in JSON format
             },
           }
         );
-        setNews(response.data.articles);
+        console.log(response.data);
+        setNews(response.data.articles); // This might vary depending on the response structure of GDELT
         setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
