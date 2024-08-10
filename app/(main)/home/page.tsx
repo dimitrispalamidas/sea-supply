@@ -6,7 +6,7 @@ const Home = () => {
   const { news } = useNews();
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen mb-14'>
       <header className='text-gray-500 p-4'>
         <h1 className='text-3xl font-bold'>Welcome, [User]!</h1>
       </header>

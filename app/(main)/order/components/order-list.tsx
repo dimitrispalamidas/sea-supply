@@ -16,7 +16,7 @@ const OrderList: React.FC = () => {
     useOrder();
 
   return (
-    <div className='p-4 bg-white rounded'>
+    <div className='p-4 bg-white rounded mb-14'>
       {cart.length > 0 ? (
         <div>
           <Table>
