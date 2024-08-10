@@ -5,17 +5,10 @@ import { useOrder } from "@/context/OrderContext";
 import Image from "next/image";
 import { categories, Item } from "@/lib/items";
 import { Button } from "@/components/ui/button";
-
-interface ItemListProps {
-  items: Item[];
-  addToCart: (item: Item) => void;
-}
-
-interface SectionProps {
-  setSelectedCategory: (category: string | null) => void;
-  setSelectedSubcategory: (subcategory: string | null) => void;
-  setSelectedSubSubcategory: (subsubcategory: string | null) => void;
-}
+import { PersonalItemsSection } from "./components/personalitems";
+import { ProfessionalItemsSection } from "./components/professionalitems";
+import OrderList from "./components/order-list";
+import { ItemList } from "./components/item-list";
 
 const getItemsByCategory = (
   categoryName: string,
@@ -38,118 +31,8 @@ const getItemsByCategory = (
   return subsubcategory.items || [];
 };
 
-const ItemList: React.FC<ItemListProps> = ({ items, addToCart }) => {
-  return (
-    <>
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className='bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300'
-        >
-          <Image
-            width={48}
-            height={48}
-            src={item.imgSrc ? item.imgSrc : "/no-image.jpg"}
-            alt={item.name}
-            className='mb-2 rounded'
-          />
-          <h2 className='text-xl font-semibold'>{item.name}</h2>
-          <p>{item.description}</p>
-          <p className='text-sm text-gray-500'>{item.category}</p>
-          <p className='font-bold'>${item.price}</p>
-          <Button
-            variant={"secondary"}
-            onClick={() => addToCart(item)}
-            className='mt-2'
-          >
-            Add to Cart
-          </Button>
-        </div>
-      ))}
-    </>
-  );
-};
-
-const PersonalItemsSection: React.FC<SectionProps> = ({
-  setSelectedCategory,
-  setSelectedSubcategory,
-  setSelectedSubSubcategory,
-}) => {
-  return (
-    <div className='p-4'>
-      <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
-        Personal Items
-      </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {categories[0]?.subcategories?.map((sub) => (
-          <div key={sub.name} className='flex justify-center'>
-            <Button
-              variant={"default"}
-              size={"lg"}
-              onClick={() => {
-                setSelectedCategory("Personal");
-                setSelectedSubcategory(sub.name);
-                setSelectedSubSubcategory(null);
-              }}
-              className='flex justify-between items-center max-w-xs w-full'
-            >
-              {sub.name}
-              <Image
-                width={48}
-                height={48}
-                src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
-                alt={sub.name}
-                className='rounded'
-              />
-            </Button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const ProfessionalItemsSection: React.FC<SectionProps> = ({
-  setSelectedCategory,
-  setSelectedSubcategory,
-  setSelectedSubSubcategory,
-}) => {
-  return (
-    <div className='p-4'>
-      <h2 className='text-2xl font-bold mb-4 flex justify-center text-gray-700'>
-        Professional Items
-      </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {categories[1]?.subcategories?.map((sub) => (
-          <div key={sub.name} className='flex justify-center'>
-            <Button
-              variant={"default"}
-              size={"lg"}
-              onClick={() => {
-                setSelectedCategory("Personal");
-                setSelectedSubcategory(sub.name);
-                setSelectedSubSubcategory(null);
-              }}
-              className='flex justify-between items-center max-w-xs w-full'
-            >
-              {sub.name}
-              <Image
-                width={48}
-                height={48}
-                src={sub.imgSrc ? sub.imgSrc : "/no-image.jpg"}
-                alt={sub.name}
-                className='rounded'
-              />
-            </Button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
 const OrderMenu: React.FC = () => {
-  const { addToCart, submitOrder } = useOrder();
+  const { addToCart } = useOrder();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
     null
@@ -209,7 +92,7 @@ const OrderMenu: React.FC = () => {
       );
     }
 
-    const itemsToRender = getItemsByCategory(
+    const items = getItemsByCategory(
       selectedCategory,
       selectedSubcategory,
       selectedSubSubcategory
@@ -229,7 +112,7 @@ const OrderMenu: React.FC = () => {
           ⬅️ Go Back
         </Button>
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-          <ItemList items={itemsToRender} addToCart={addToCart} />
+          <ItemList items={items} addToCart={addToCart} />
         </div>
       </div>
     );
@@ -238,7 +121,7 @@ const OrderMenu: React.FC = () => {
   return (
     <>
       {!selectedCategory && (
-        <>
+        <div className='min-h-screen'>
           <PersonalItemsSection
             setSelectedCategory={setSelectedCategory}
             setSelectedSubcategory={setSelectedSubcategory}
@@ -249,16 +132,11 @@ const OrderMenu: React.FC = () => {
             setSelectedSubcategory={setSelectedSubcategory}
             setSelectedSubSubcategory={setSelectedSubSubcategory}
           />
-        </>
+
+          <OrderList />
+        </div>
       )}
       {selectedCategory && renderItemsByCategory()}
-      <Button
-        variant={"secondary"}
-        onClick={submitOrder}
-        className='fixed bottom-10 right-10 hidden md:flex'
-      >
-        <span className='mr-2'>🛒</span>See Cart
-      </Button>
     </>
   );
 };

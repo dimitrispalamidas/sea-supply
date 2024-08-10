@@ -23,6 +23,7 @@ export interface Item {
   description: string;
   price: number;
   imgSrc?: string;
+  amount?: number;
 }
 
 export const categories: Category[] = [
