@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Trash2 } from "lucide-react";
+import { ShoppingCart, Trash2 } from "lucide-react";
 
 const OrderList: React.FC = () => {
   const { cart, removeFromCart, addToCart, submitOrder, deleteFromCart } =
@@ -22,7 +22,10 @@ const OrderList: React.FC = () => {
           <Table>
             <TableCaption>
               <div>⬆️</div>
-              Your current items.
+              <div className='flex items-center justify-center'>
+                Your current items
+                <ShoppingCart size={16} className='ml-1' />
+              </div>
               <Button
                 variant={"primary"}
                 onClick={submitOrder}
@@ -64,7 +67,10 @@ const OrderList: React.FC = () => {
           </Table>
         </div>
       ) : (
-        <p className='text-center text-gray-500'>Your cart is empty</p>
+        <div className='flex items-center justify-center '>
+          <p className='text-center text-gray-500'>Your cart is empty</p>
+          <ShoppingCart size={16} className='ml-1' />
+        </div>
       )}
     </div>
   );

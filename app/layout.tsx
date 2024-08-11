@@ -1,6 +1,9 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+
+import { ClerkProvider } from "@clerk/nextjs";
+
 import { OrderProvider } from "@/context/OrderContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,10 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <OrderProvider>
-        <body className={inter.className}>{children}</body>
-      </OrderProvider>
-    </html>
+    <ClerkProvider>
+      <html lang='en'>
+        <OrderProvider>
+          <body className={inter.className}>{children}</body>
+        </OrderProvider>
+      </html>
+    </ClerkProvider>
   );
 }

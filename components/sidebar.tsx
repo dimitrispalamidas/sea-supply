@@ -3,6 +3,14 @@ import Image from "next/image";
 import { BellRing, Calendar, Home, ShoppingCart, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
+import {
+  ClerkLoaded,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
+import { Button } from "./ui/button";
 
 type SidebarProps = {
   className?: string;
@@ -62,6 +70,14 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
           buttonClassName='pl-2'
         />
       </div>
+      <ClerkLoaded>
+        <SignedIn>
+          <div className='flex items-center pl-2 mb-10'>
+            <UserButton afterSignOutUrl='/' />
+            <span className='ml-2'> User </span>
+          </div>
+        </SignedIn>
+      </ClerkLoaded>
     </div>
   );
 };
