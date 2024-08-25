@@ -28,6 +28,7 @@ type Category = {
   }[];
 };
 
+// comment
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
