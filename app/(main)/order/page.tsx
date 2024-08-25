@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Cart from "./components/Cart";
+// import Cart from "./components/Cart";
 import Image from "next/image";
 
 type Category = {
@@ -28,7 +28,6 @@ type Category = {
   }[];
 };
 
-// Just a comment
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
@@ -202,7 +201,7 @@ const CategoriesPage = () => {
               )}
         </div>
       </div>
-      <Cart />
+      {/* <Cart /> */}
     </>
   );
 };

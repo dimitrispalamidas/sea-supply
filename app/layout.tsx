@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
-import { OrderProvider } from "@/context/OrderContext";
+// import { OrderProvider } from "@/context/OrderContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +24,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
-        <OrderProvider>
-          <body className={inter.className}>{children}</body>
-        </OrderProvider>
+        {/* <OrderProvider> */}
+        <body className={inter.className}>{children}</body>
+        {/* </OrderProvider> */}
       </html>
     </ClerkProvider>
   );
