@@ -2,7 +2,7 @@
 
 import { NewsCarousel, useNews } from "./components/news-carousel";
 
-const Home = () => {
+const HomePage = () => {
   const { news } = useNews();
 
   return (
@@ -36,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

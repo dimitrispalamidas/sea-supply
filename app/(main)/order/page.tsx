@@ -1,144 +1,207 @@
 "use client";
 
-import { useState } from "react";
-import { useOrder } from "@/context/OrderContext";
-import Image from "next/image";
-import { categories, Item } from "@/lib/items";
+import { useEffect, useState } from "react";
+import { Category as PrismaCategory } from "@prisma/client";
 import { Button } from "@/components/ui/button";
-import { PersonalItemsSection } from "./components/personalitems";
-import { ProfessionalItemsSection } from "./components/professionalitems";
-import OrderList from "./components/order-list";
-import { ItemList } from "./components/item-list";
+import Cart from "./components/Cart";
+import Image from "next/image";
 
-const getItemsByCategory = (
-  categoryName: string,
-  subcategoryName: string,
-  subsubcategoryName: string
-): Item[] => {
-  const category = categories.find((cat) => cat.name === categoryName);
-  if (!category) return [];
-
-  const subcategory = category.subcategories?.find(
-    (sub) => sub.name === subcategoryName
-  );
-  if (!subcategory) return [];
-
-  const subsubcategory = subcategory.subSubCategories?.find(
-    (subSub) => subSub.name === subsubcategoryName
-  );
-  if (!subsubcategory) return [];
-
-  return subsubcategory.items || [];
+type Category = PrismaCategory & {
+  subcategories: {
+    id: string;
+    name: string;
+    imgSrc?: string | null;
+    subsubcategories: {
+      id: string;
+      name: string;
+      imgSrc?: string | null;
+      items: {
+        id: string;
+        name: string;
+        description: string;
+        price: number;
+        imgSrc?: string | null;
+      }[];
+    }[];
+  }[];
 };
 
-const OrderMenu: React.FC = () => {
-  const { addToCart } = useOrder();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+const CategoriesPage = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
     null
   );
-  const [selectedSubSubcategory, setSelectedSubSubcategory] = useState<
+  const [selectedSubsubcategory, setSelectedSubsubcategory] = useState<
     string | null
   >(null);
 
-  const renderItemsByCategory = () => {
-    if (!selectedCategory || !selectedSubcategory) return null;
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await fetch("/api/categories");
+      const data = await res.json();
+      setCategories(data);
+    };
 
-    if (!selectedSubSubcategory) {
-      const category = categories.find((cat) => cat.name === selectedCategory);
-      const subcategory = category?.subcategories?.find(
-        (sub) => sub.name === selectedSubcategory
-      );
-      const subSubCategories = subcategory?.subSubCategories;
+    fetchCategories();
+  }, []);
 
-      return (
-        <div className='p-4'>
-          <h2 className='text-2xl text-center font-bold mb-4 text-gray-700'>
-            {selectedSubcategory} Subcategories
-          </h2>
-          <Button
-            onClick={() => {
-              setSelectedCategory(null);
-              setSelectedSubcategory(null);
-              setSelectedSubSubcategory(null);
-            }}
-            className='mb-4'
-          >
-            ⬅️ Go Back
-          </Button>
-          <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-            {subSubCategories?.map((subSub) => (
-              <div
-                key={subSub.name}
-                onClick={() => setSelectedSubSubcategory(subSub.name)}
-                className='relative bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center overflow-hidden cursor-pointer'
-              >
-                <div className='relative w-full pb-[100%]'>
-                  <Image
-                    width={96}
-                    height={96}
-                    src={subSub.imgSrc || "/public/no-image.jpg"}
-                    alt={subSub.name}
-                    className='absolute inset-0 w-full h-full object-contain'
-                  />
-                </div>
-                <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-10 text-white text-lg font-semibold'>
-                  {subSub.name}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
+  const handleSubcategoryClick = (subcategoryId: string) => {
+    setSelectedSubcategory(subcategoryId);
+    setSelectedSubsubcategory(null);
+  };
+
+  const handleSubsubcategoryClick = (subsubcategoryId: string) => {
+    setSelectedSubsubcategory(subsubcategoryId);
+  };
+
+  const handleBackClick = () => {
+    if (selectedSubsubcategory) {
+      setSelectedSubsubcategory(null);
+    } else if (selectedSubcategory) {
+      setSelectedSubcategory(null);
     }
-
-    const items = getItemsByCategory(
-      selectedCategory,
-      selectedSubcategory,
-      selectedSubSubcategory
-    );
-
-    return (
-      <div className='p-4'>
-        <h2 className='text-2xl font-bold mb-4 text-center'>
-          {selectedSubSubcategory} Items
-        </h2>
-        <Button
-          onClick={() => {
-            setSelectedSubSubcategory(null);
-          }}
-          className='mb-4'
-        >
-          ⬅️ Go Back
-        </Button>
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-          <ItemList items={items} addToCart={addToCart} />
-        </div>
-      </div>
-    );
   };
 
   return (
     <>
-      {!selectedCategory && (
-        <div className='min-h-screen'>
-          <PersonalItemsSection
-            setSelectedCategory={setSelectedCategory}
-            setSelectedSubcategory={setSelectedSubcategory}
-            setSelectedSubSubcategory={setSelectedSubSubcategory}
-          />
-          <ProfessionalItemsSection
-            setSelectedCategory={setSelectedCategory}
-            setSelectedSubcategory={setSelectedSubcategory}
-            setSelectedSubSubcategory={setSelectedSubSubcategory}
-          />
+      <div className='flex flex-col text-center mb-8 pt-8'>
+        {selectedSubcategory || selectedSubsubcategory ? (
+          <Button
+            variant='default'
+            onClick={handleBackClick}
+            className='mb-4 text-blue-500'
+          >
+            ⬅️ Go Back
+          </Button>
+        ) : null}
 
-          <OrderList />
+        {/* Only render categories if no subcategory is selected */}
+        {selectedSubcategory === null &&
+          categories.map((category) => (
+            <div key={category.id} className='mb-6'>
+              <h2 className='text-2xl font-semibold mb-2'>
+                {category.name} Items
+              </h2>
+
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center'>
+                {category.subcategories.map((subcategory) => {
+                  return (
+                    <Button
+                      variant={"default"}
+                      size={"lg"}
+                      key={subcategory.id}
+                      className='flex justify-between items-center max-w-xs w-full'
+                      onClick={() => handleSubcategoryClick(subcategory.id)}
+                    >
+                      {subcategory.name}
+                      <Image
+                        alt='Default image'
+                        width={48}
+                        height={48}
+                        className='rounded'
+                        src={
+                          subcategory.imgSrc
+                            ? subcategory.imgSrc
+                            : "/no-image.jpg"
+                        }
+                      />
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+        {/* Only render subsubcategories if no subsubcategory is selected */}
+        {selectedSubsubcategory === null &&
+          selectedSubcategory &&
+          categories
+            .flatMap((category) =>
+              category.subcategories.filter(
+                (subcategory) => subcategory.id === selectedSubcategory
+              )
+            )
+            .map((subcategory) => (
+              <div key={subcategory.id} className='grid grid-cols-2 gap-4'>
+                {subcategory.subsubcategories.map((subsubcategory) => (
+                  <>
+                    <div
+                      key={subsubcategory.name}
+                      onClick={() =>
+                        handleSubsubcategoryClick(subsubcategory.id)
+                      }
+                      className='relative bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center overflow-hidden cursor-pointer'
+                    >
+                      <div className='relative w-full pb-[100%]'>
+                        <Image
+                          width={96}
+                          height={96}
+                          src={subsubcategory.imgSrc || "/public/no-image.jpg"}
+                          alt={subsubcategory.name}
+                          className='absolute inset-0 w-full h-full object-contain'
+                        />
+                      </div>
+                      <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-10 text-white text-lg font-semibold'>
+                        {subsubcategory.name}
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+            ))}
+
+        {/* Render items if a subsubcategory is selected */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          {selectedSubsubcategory &&
+            categories
+              .flatMap((category) =>
+                category.subcategories.filter(
+                  (subcategory) => subcategory.id === selectedSubcategory
+                )
+              )
+              .flatMap((subcategory) =>
+                subcategory.subsubcategories.filter(
+                  (subsubcategory) =>
+                    subsubcategory.id === selectedSubsubcategory
+                )
+              )
+              .flatMap((subsubcategory) =>
+                subsubcategory.items.map((item) => (
+                  <div
+                    key={item.id}
+                    className='bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between'
+                  >
+                    <div className='flex flex-col items-center'>
+                      <Image
+                        width={100}
+                        height={100}
+                        src={item.imgSrc ? item.imgSrc : "/no-image.jpg"}
+                        alt={item.name}
+                        className='mb-2 rounded object-cover'
+                      />
+                      <div className='text-center'>
+                        <h2 className='text-xl font-semibold mb-2'>
+                          {item.name}
+                        </h2>
+                        <p className='text-gray-700 mb-2'>{item.description}</p>
+                        <p className='font-bold text-lg mb-2'>${item.price}</p>
+                      </div>
+                    </div>
+                    <Button
+                      variant={"secondary"}
+                      // onClick={() => addToCart(item)}
+                      className='mx-auto'
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                ))
+              )}
         </div>
-      )}
-      {selectedCategory && renderItemsByCategory()}
+      </div>
+      <Cart />
     </>
   );
 };
 
-export default OrderMenu;
+export default CategoriesPage;

@@ -16,36 +16,36 @@ export const useNews = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await axios.get(
-          "http://api.gdeltproject.org/api/v2/doc/doc?",
-          {
-            params: {
-              query: "vessel", // Customize your query as needed
-              mode: "ArtList", // Use ArtList to get articles
-              maxrecords: 20, // Limit the number of records
-              format: "json",
-              sourcelang: "english",
-            },
-          }
-        );
-        console.log(response.data);
-        setNews(response.data.articles); // This might vary depending on the response structure of GDELT
-        setLoading(false);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchNews = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://api.gdeltproject.org/api/v2/doc/doc?",
+  //         {
+  //           params: {
+  //             query: "vessel", // Customize your query as needed
+  //             mode: "ArtList", // Use ArtList to get articles
+  //             maxrecords: 20, // Limit the number of records
+  //             format: "json",
+  //             sourcelang: "english",
+  //           },
+  //         }
+  //       );
+  //       console.log(response.data);
+  //       setNews(response.data.articles); // This might vary depending on the response structure of GDELT
+  //       setLoading(false);
+  //     } catch (err) {
+  //       if (err instanceof Error) {
+  //         setError(err.message);
+  //       } else {
+  //         setError("An unknown error occurred");
+  //       }
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchNews();
-  }, []);
+  //   fetchNews();
+  // }, []);
 
   return { news, loading, error };
 };

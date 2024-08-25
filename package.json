@@ -2,6 +2,9 @@
   "name": "sea-supply",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,14 +12,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.637.0",
     "@clerk/nextjs": "^4.29.12",
+    "@prisma/client": "^5.18.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-table": "^8.20.1",
+    "aws-sdk": "^2.1682.0",
     "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.419.0",
+    "mongodb": "^6.8.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
@@ -35,6 +42,7 @@
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
