@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Category as PrismaCategory } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import Cart from "./components/Cart";
 import Image from "next/image";
 
-type Category = PrismaCategory & {
+type Category = {
+  id: string;
+  name: string;
+  imgSrc?: string | null;
   subcategories: {
     id: string;
     name: string;
