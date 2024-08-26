@@ -484,69 +484,94 @@ async function main() {
   const professional = await prisma.category.create({
     data: {
       name: "Professional",
+      imgSrc: "URL_for_Professional_category_image",
       subcategories: {
         create: [
           {
             name: "Work Clothes",
+            imgSrc:
+              "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/working+clothes.jpg",
             subsubcategories: {
               create: [
                 {
                   name: "Uniforms",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Uniforms/uniforms.jpg",
                   items: {
                     create: [
                       {
                         name: "Company's Uniform",
                         description: "Company's Uniform",
                         price: 8,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Uniforms/uniform.jpg",
                       },
                       {
                         name: "Company's Winter Uniform",
                         description: "Company's uniform for winter",
                         price: 10,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Uniforms/winteruniform.jpg",
                       },
                       {
                         name: "Coveralls",
                         description: "Protective Coveralls",
                         price: 15,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Uniforms/coverall.jpg",
                       },
                     ],
                   },
                 },
                 {
                   name: "Glasses",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Glasses/working+glasses.jpg",
                   items: {
                     create: [
                       {
                         name: "Sunglasses",
                         description: "Safety Sunglasses",
                         price: 3,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Glasses/working+sunglasses.jpg",
                       },
                       {
                         name: "Glasses",
                         description: "Safety Glasses",
                         price: 2,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Glasses/safety+glasses.jpg",
                       },
                       {
                         name: "Goggles",
                         description: "Protective Goggles",
                         price: 5,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Glasses/goggles.jpg",
                       },
                     ],
                   },
                 },
                 {
                   name: "Footwear",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Footwear/working+footwear.jpg",
                   items: {
                     create: [
                       {
                         name: "Safety Boots",
                         description: "Steel-toe Safety Boots",
                         price: 50,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Footwear/working+boots.jpg",
                       },
                       {
                         name: "Work Shoes",
                         description: "Slip-resistant Work Shoes",
                         price: 40,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Work+Clothes/Footwear/working+shoes.webp",
                       },
                     ],
                   },
@@ -556,60 +581,82 @@ async function main() {
           },
           {
             name: "Safety Equipment",
+            imgSrc:
+              "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/safety+equipment.jpg",
             subsubcategories: {
               create: [
                 {
                   name: "Life-vests",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Life-vests/life+vests.jpg",
                   items: {
                     create: [
                       {
                         name: "Life-vest Adult",
                         description: "Life vest for adults",
                         price: 240,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Life-vests/lifevest+adult.jpg",
                       },
                       {
                         name: "Life-vest Child",
                         description: "Life-vest for children",
                         price: 120,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Life-vests/lifevest+children.png",
                       },
                       {
                         name: "Life-raft",
                         description: "Inflatable Life-raft",
                         price: 2000,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Life-vests/liferaft.jpg",
                       },
                     ],
                   },
                 },
                 {
                   name: "Immersion Suits",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Immersion+Suits/imersion+suits.jpg",
                   items: {
                     create: [
                       {
                         name: "Immersion Suit Adult",
                         description: "Immersion Suit for adults",
                         price: 600,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Immersion+Suits/Immersion-Suit-II.jpg",
                       },
                       {
                         name: "Immersion Suit Child",
                         description: "Immersion Suit for children",
                         price: 400,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Immersion+Suits/Child-immersion-suit.jpg",
                       },
                     ],
                   },
                 },
                 {
                   name: "Fire Safety",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Fire+Safety/firesafety.jpg",
                   items: {
                     create: [
                       {
                         name: "Fire Extinguisher",
                         description: "Portable Fire Extinguisher",
                         price: 50,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Fire+Safety/fire+extinguisher.png",
                       },
                       {
                         name: "Fire Blanket",
                         description: "Emergency Fire Blanket",
                         price: 30,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Safety+Equipment/Fire+Safety/fire+blanket.jpg",
                       },
                     ],
                   },
@@ -619,55 +666,75 @@ async function main() {
           },
           {
             name: "Navigation Equipment",
+            imgSrc:
+              "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/navigation+equipment.jpg",
             subsubcategories: {
               create: [
                 {
                   name: "Compasses",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Compasses/compasses.gif",
                   items: {
                     create: [
                       {
                         name: "Magnetic Compass",
                         description: "Standard Magnetic Compass",
                         price: 100,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Compasses/magneticcompass.jpg",
                       },
                       {
                         name: "Gyrocompass",
                         description: "Advanced Gyrocompass",
                         price: 500,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Compasses/gyrocompass.gif",
                       },
                     ],
                   },
                 },
                 {
                   name: "Charts",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Charts/nautical+charts.webp",
                   items: {
                     create: [
                       {
                         name: "Nautical Chart",
                         description: "Detailed Nautical Chart",
                         price: 20,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Charts/nautical+chart.png",
                       },
                       {
                         name: "Digital Chart",
                         description: "Electronic Navigational Chart",
                         price: 100,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Charts/electroniv+navigational+chart.jpg",
                       },
                     ],
                   },
                 },
                 {
                   name: "Communication",
+                  imgSrc:
+                    "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Communication/communication.jpg",
                   items: {
                     create: [
                       {
                         name: "VHF Radio",
                         description: "Marine VHF Radio",
                         price: 150,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Communication/vhf+radio.jpg",
                       },
                       {
                         name: "Satellite Phone",
                         description: "Marine Satellite Phone",
                         price: 800,
+                        imgSrc:
+                          "https://seasupply.s3.eu-central-1.amazonaws.com/Professional/Navigation+Equipment/Communication/iridium.jpg",
                       },
                     ],
                   },
