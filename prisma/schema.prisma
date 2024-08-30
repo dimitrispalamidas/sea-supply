@@ -7,11 +7,67 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Category {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+model User {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  email     String  @unique
+  role      Role
+  orders    Order[] @relation("UserOrders")
+  approvals Order[] @relation("UserApprovals")
+}
+
+enum Role {
+  SEAFARER
+  CAPTAIN
+  STORE_MANAGER
+}
+
+model Order {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  status       OrderStatus @default(PENDING)
+  items        OrderItem[] // Relation with OrderItem model
+  createdBy    User        @relation("UserOrders", fields: [userId], references: [id])
+  userId       String      @db.ObjectId
+  approvedBy   User?       @relation("UserApprovals", fields: [approvedById], references: [id])
+  approvedById String?     @db.ObjectId
+}
+
+enum OrderStatus {
+  PENDING
+  APPROVED_BY_CAPTAIN
+  CONFIRMED_BY_SHORE
+}
+
+model OrderItem {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  order    Order  @relation(fields: [orderId], references: [id])
+  orderId  String @db.ObjectId
+  item     Item   @relation(fields: [itemId], references: [id])
+  itemId   String @db.ObjectId
+  quantity Int 
+}
+
+model Item {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  description      String
+  price            Float
+  imgSrc           String?
+  subSubCategory   SubSubCategory @relation(fields: [subSubCategoryId], references: [id])
+  subSubCategoryId String         @db.ObjectId
+  orderItems       OrderItem[] 
+}
+
+// For the Order Page
+
+model SubSubCategory {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   imgSrc        String?
-  subcategories SubCategory[]
+  subcategory   SubCategory @relation(fields: [subcategoryId], references: [id])
+  subcategoryId String      @db.ObjectId
+  items         Item[]
 }
 
 model SubCategory {
@@ -23,21 +79,9 @@ model SubCategory {
   subsubcategories SubSubCategory[]
 }
 
-model SubSubCategory {
-  id              String        @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  imgSrc          String?
-  subcategory     SubCategory   @relation(fields: [subcategoryId], references: [id])
-  subcategoryId   String        @db.ObjectId
-  items           Item[]
-}
-
-model Item {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  description     String
-  price           Float
-  imgSrc          String?
-  subSubCategory  SubSubCategory  @relation(fields: [subSubCategoryId], references: [id])
-  subSubCategoryId String         @db.ObjectId
+model Category {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  imgSrc        String?
+  subcategories SubCategory[]
 }

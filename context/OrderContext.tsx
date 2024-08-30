@@ -1,96 +1,81 @@
-// "use client";
+"use client";
 
-// import React, { createContext, useContext, useState, ReactNode } from "react";
+import { Item as PrismaItem } from "@prisma/client";
+import { createContext, useContext, useState, ReactNode } from "react";
 
-// type OrderContextType = {
-//   cart: Item[];
-//   addToCart: (item: Item) => void;
-//   removeFromCart: (item: Item) => void;
-//   deleteFromCart: (item: Item) => void;
-//   submitOrder: () => void;
-// };
+// Extend Prisma's Item type to include quantity
+type CartItem = PrismaItem & {
+  quantity: number;
+};
 
-// const OrderContext = createContext<OrderContextType | undefined>(undefined);
+type OrderContextType = {
+  cart: CartItem[];
+  addToCart: (item: PrismaItem) => void;
+  removeFromCart: (item: PrismaItem) => void;
+  deleteFromCart: (item: PrismaItem) => void;
+  submitOrder: () => void;
+};
 
-// export const OrderProvider: React.FC<{ children: ReactNode }> = ({
-//   children,
-// }) => {
-//   const [cart, setCart] = useState<Item[]>([]);
-//   const addToCart = (item: Item) => {
-//     setCart((prevCart) => {
-//       const existingItemIndex = prevCart.findIndex(
-//         (cartItem) => cartItem.id === item.id
-//       );
+const OrderContext = createContext<OrderContextType | null>(null);
 
-//       if (existingItemIndex >= 0) {
-//         // If the item exists in the cart, update its amount
-//         const updatedCart = prevCart.map((cartItem, index) =>
-//           index === existingItemIndex
-//             ? { ...cartItem, amount: (cartItem.amount ?? 0) + 1 } // Default to 0 if undefined
-//             : cartItem
-//         );
-//         return updatedCart;
-//       } else {
-//         // If the item doesn't exist, add it to the cart with amount defaulting to 1
-//         return [...prevCart, { ...item, amount: item.amount ?? 1 }];
-//       }
-//     });
-//   };
+export const useOrder = (): OrderContextType => {
+  const context = useContext(OrderContext);
+  if (!context) {
+    throw new Error("useOrder must be used within an OrderProvider");
+  }
+  return context;
+};
 
-//   const removeFromCart = (item: Item) => {
-//     setCart((prevCart) => {
-//       const existingItemIndex = prevCart.findIndex(
-//         (cartItem) => cartItem.id === item.id
-//       );
+type OrderProviderProps = {
+  children: ReactNode;
+};
 
-//       if (existingItemIndex >= 0) {
-//         // If the item exists in the cart and the amount is greater than 1, decrease the amount
-//         const updatedCart = prevCart.map((cartItem, index) =>
-//           index === existingItemIndex
-//             ? {
-//                 ...cartItem,
-//                 amount:
-//                   (cartItem.amount ?? 1) > 1 ? (cartItem.amount ?? 1) - 1 : 1, // Handle undefined by defaulting to 1
-//               }
-//             : cartItem
-//         );
+export const OrderProvider = ({ children }: OrderProviderProps) => {
+  const [cart, setCart] = useState<CartItem[]>([]);
 
-//         // If the amount was reduced to 0, remove the item from the cart
-//         if ((updatedCart[existingItemIndex].amount ?? 0) === 0) {
-//           return updatedCart.filter((_, index) => index !== existingItemIndex);
-//         }
+  const addToCart = (item: PrismaItem) => {
+    setCart((prevCart) => {
+      const itemExists = prevCart.find((cartItem) => cartItem.id === item.id);
 
-//         return updatedCart;
-//       } else {
-//         // If the item doesn't exist in the cart, return the previous cart state unchanged
-//         return prevCart;
-//       }
-//     });
-//   };
+      if (itemExists) {
+        return prevCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, { ...item, quantity: 1 }];
+      }
+    });
+  };
 
-//   const deleteFromCart = (item: Item) => {
-//     setCart(cart.filter((cartItem) => cartItem.id !== item.id));
-//   };
+  const removeFromCart = (item: PrismaItem) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0)
+    );
+  };
 
-//   const submitOrder = () => {
-//     // Here you would send the order to the server or perform another action
-//     console.log("Order submitted:", cart);
-//     setCart([]);
-//   };
+  const deleteFromCart = (item: PrismaItem) => {
+    setCart((prevCart) =>
+      prevCart.filter((cartItem) => cartItem.id !== item.id)
+    );
+  };
 
-//   return (
-//     <OrderContext.Provider
-//       value={{ cart, addToCart, removeFromCart, deleteFromCart, submitOrder }}
-//     >
-//       {children}
-//     </OrderContext.Provider>
-//   );
-// };
+  const submitOrder = () => {
+    // Handle order submission logic here
+  };
 
-// export const useOrder = () => {
-//   const context = useContext(OrderContext);
-//   if (!context) {
-//     throw new Error("useOrder must be used within an OrderProvider");
-//   }
-//   return context;
-// };
+  return (
+    <OrderContext.Provider
+      value={{ cart, addToCart, removeFromCart, deleteFromCart, submitOrder }}
+    >
+      {children}
+    </OrderContext.Provider>
+  );
+};

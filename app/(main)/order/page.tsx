@@ -1,8 +1,9 @@
 "use client";
 
+import { useOrder } from "@/context/OrderContext";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-// import Cart from "./components/Cart";
+import Cart from "./components/Cart";
 import Image from "next/image";
 
 type Category = {
@@ -30,6 +31,8 @@ type Category = {
 
 // comment
 const CategoriesPage = () => {
+  const { addToCart } = useOrder();
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
     null
@@ -192,7 +195,13 @@ const CategoriesPage = () => {
                     </div>
                     <Button
                       variant={"secondary"}
-                      // onClick={() => addToCart(item)}
+                      onClick={() =>
+                        addToCart({
+                          ...item,
+                          subSubCategoryId: subsubcategory.id,
+                          imgSrc: item.imgSrc ?? null, // Ensure imgSrc is not undefined
+                        })
+                      }
                       className='mx-auto'
                     >
                       Add to Cart
@@ -202,7 +211,7 @@ const CategoriesPage = () => {
               )}
         </div>
       </div>
-      {/* <Cart /> */}
+      <Cart />
     </>
   );
 };
