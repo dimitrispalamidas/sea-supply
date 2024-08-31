@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BellRing, Calendar, Home, ShoppingCart, User } from "lucide-react";
+import {
+  BellRing,
+  Calendar,
+  Home,
+  LucideShoppingCart,
+  ShoppingCart,
+  User,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
 import {
@@ -25,7 +32,7 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
         className
       )}
     >
-      <Link href='/order'>
+      <Link href='/home'>
         <div className='pt-8 pl-2 pb-7 flex items-center gap-x-3'>
           <Image src='/favicon.png' height={40} width={40} alt='SeaSupply' />
           <h1 className='text-2xl font-extrabold text-gray-900 tracking-wide'>
@@ -69,10 +76,17 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
           className='flex-row'
           buttonClassName='pl-2'
         />
+        <SidebarItem
+          label='Manage Orders'
+          href='/orders'
+          icon={<LucideShoppingCart />}
+          className='flex-row'
+          buttonClassName='pl-2'
+        />
       </div>
       <ClerkLoaded>
         <SignedIn>
-          <div className='flex items-center pl-2 mb-10'>
+          <div className='flex items-center pl-2 mb-10 mt-5'>
             <UserButton afterSignOutUrl='/' />
             <span className='ml-2'> User </span>
           </div>

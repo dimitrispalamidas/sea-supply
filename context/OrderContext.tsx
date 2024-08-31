@@ -2,6 +2,7 @@
 
 import { Item as PrismaItem } from "@prisma/client";
 import { createContext, useContext, useState, ReactNode } from "react";
+import toast from "react-hot-toast";
 
 // Extend Prisma's Item type to include quantity
 type CartItem = PrismaItem & {
@@ -67,8 +68,27 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
     );
   };
 
-  const submitOrder = () => {
-    // Handle order submission logic here
+  const submitOrder = async () => {
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cart),
+      });
+
+      if (res.ok) {
+        toast.success("Order submitted successfully!");
+        setCart([]); // Clear the cart after submission
+      } else {
+        toast.error("Order submission failed");
+        console.error("Order submission failed");
+      }
+    } catch (error) {
+      toast.error("Error submitting order");
+      console.error("Error submitting order:", error);
+    }
   };
 
   return (
