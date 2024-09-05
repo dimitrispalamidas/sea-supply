@@ -70,7 +70,7 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
 
   const submitOrder = async () => {
     try {
-      const res = await fetch("/api/orders", {
+      const res = await fetch("/api/myorders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

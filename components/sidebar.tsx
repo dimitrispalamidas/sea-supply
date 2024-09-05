@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,7 +18,8 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
-} from "@clerk/nextjs";
+  useUser, // Import useUser correctly
+} from "@clerk/nextjs"; // Correct import from Clerk
 import { Button } from "./ui/button";
 
 type SidebarProps = {
@@ -25,6 +28,8 @@ type SidebarProps = {
 };
 
 export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
+  const { user } = useUser(); // useUser hook only returns user, no need for isSignedIn
+
   return (
     <div
       className={cn(
@@ -88,9 +93,16 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
         <SignedIn>
           <div className='flex items-center pl-2 mb-10 mt-5'>
             <UserButton afterSignOutUrl='/' />
-            <span className='ml-2'> User </span>
+            <span className='ml-2'>{user?.fullName} </span>
           </div>
         </SignedIn>
+        <SignedOut>
+          <div className='pl-2 mb-10 mt-5'>
+            <SignInButton>
+              <Button>Sign In</Button>
+            </SignInButton>
+          </div>
+        </SignedOut>
       </ClerkLoaded>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 type OrderItem = {
   id: string;
@@ -22,9 +23,17 @@ const OrdersPage = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch("/api/orders");
-      const data = await res.json();
-      setOrders(data);
+      try {
+        const res = await fetch("/api/allorders");
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status} ${res.statusText}`);
+        }
+        const data = await res.json();
+        setOrders(data);
+      } catch (error) {
+        console.error("Failed to fetch orders:", error);
+        toast.error("Failed to fetch orders");
+      }
     };
 
     fetchOrders();

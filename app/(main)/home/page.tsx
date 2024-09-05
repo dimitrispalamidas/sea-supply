@@ -1,14 +1,37 @@
 "use client";
 
 import { NewsCarousel, useNews } from "./components/news-carousel";
+import SignInForm from "./components/SignInForm";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { createOrSyncUser } from "@/lib/syncUser"; // Import your user sync function
 
 const HomePage = () => {
   const { news } = useNews();
+  const { isSignedIn, user } = useUser();
+
+  useEffect(() => {
+    // Sync user data if the user is signed in
+    const syncUser = async () => {
+      if (isSignedIn && user) {
+        try {
+          await createOrSyncUser();
+        } catch (error) {
+          console.error("Error syncing user:", error);
+        }
+      }
+    };
+    syncUser();
+  }, [isSignedIn, user]);
+
+  // if (!isSignedIn) {
+  //   return <SignInForm />;
+  // }
 
   return (
     <div className='min-h-screen mb-14'>
       <header className='text-gray-500 p-4'>
-        <h1 className='text-3xl font-bold'>Welcome, [User]!</h1>
+        <h1 className='text-3xl font-bold'>Welcome, {user?.firstName}!</h1>
       </header>
       <section className='p-6 grid grid-cols-1 lg:grid-cols-2 gap-6'>
         <div className='bg-white p-4 shadow rounded'>
