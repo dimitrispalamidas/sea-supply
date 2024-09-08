@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs"; // Clerk's useUser hook to get the logged-in user's details
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 // Define types for order item and order
 type OrderItem = {
@@ -11,12 +12,14 @@ type OrderItem = {
   item: {
     name: string;
     price: number;
+    imgSrc?: string;
   };
 };
 
 type Order = {
   id: string;
   createdAt: string;
+  status: string; // Add status to the Order type
   items: OrderItem[];
 };
 
@@ -63,24 +66,57 @@ const ProfilePage: React.FC = () => {
         <p>No orders found.</p>
       ) : (
         <div className='grid grid-cols-1 gap-4'>
-          {orders.map((order) => (
-            <div key={order.id} className='border p-4 rounded-lg shadow'>
-              <h2 className='text-xl font-semibold mb-2'>Order #{order.id}</h2>
-              <p className='text-gray-600 mb-4'>
-                Submitted on {new Date(order.createdAt).toLocaleString()}
-              </p>
-              <ul>
-                {order.items.map((orderItem) => (
-                  <li key={orderItem.id} className='flex justify-between'>
-                    <span>
-                      {orderItem.item.name} (x{orderItem.quantity})
-                    </span>
-                    <span>${orderItem.item.price}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {orders
+            .slice()
+            .reverse()
+            .map((order) => (
+              <div
+                key={order.id}
+                className={`border p-4 rounded-lg shadow ${
+                  order.status === "PENDING" ? "bg-blue-200" : ""
+                }`}
+              >
+                <h2 className='text-xl font-semibold mb-2 flex justify-between'>
+                  <span> Order #{order.id} </span>
+                  <p>
+                    Status: <span className='font-medium'>{order.status}</span>
+                  </p>
+                </h2>
+
+                <p className='text-gray-600 mb-4'>
+                  Submitted on {new Date(order.createdAt).toLocaleString()}
+                </p>
+                <ul>
+                  {order.items.map((orderItem) => (
+                    <li key={orderItem.id} className='flex justify-between'>
+                      <div className='flex items-center'>
+                        <span>
+                          {orderItem.item.name} (x{orderItem.quantity})
+                        </span>
+                        {
+                          <Image
+                            alt='image-item'
+                            width={40}
+                            height={40}
+                            src={orderItem.item.imgSrc || "/no-image.jpg"}
+                          />
+                        }
+                      </div>
+                      <span>{orderItem.item.price * orderItem.quantity}$</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className='text-xl font-semibold flex justify-end mt-6'>
+                  <span>Total:&nbsp;</span>
+                  {order.items.reduce(
+                    (sum, orderItem) =>
+                      sum + orderItem.item.price * orderItem.quantity,
+                    0
+                  )}
+                  $
+                </div>
+              </div>
+            ))}
         </div>
       )}
     </div>
