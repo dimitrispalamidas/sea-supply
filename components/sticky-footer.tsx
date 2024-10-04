@@ -10,9 +10,9 @@ export const StickyFooter = ({ className }: StickyFooterProps) => {
     <div className={`fixed bottom-0 w-full bg-white border-t ${className}`}>
       <div className='flex justify-around py-1'>
         <SidebarItem
-          label='Home'
-          href='/home'
-          icon={<Home />}
+          label='Order'
+          href='/order'
+          icon={<ShoppingCart />}
           className='flex-col text-xs'
         />
         <SidebarItem
@@ -21,14 +21,6 @@ export const StickyFooter = ({ className }: StickyFooterProps) => {
           icon={<Calendar />}
           className='flex-col text-xs'
         />
-        <div className='pl-2'>
-          <SidebarItem
-            label='Order'
-            href='/order'
-            icon={<ShoppingCart />}
-            className='flex-col text-xs'
-          />
-        </div>
         <SidebarItem
           label='Notifications'
           href='/notifications'

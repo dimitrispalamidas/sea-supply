@@ -47,9 +47,9 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
       </Link>
       <div className='flex flex-col gap-y-2 flex-1'>
         <SidebarItem
-          label='Home'
-          href='/home'
-          icon={<Home />}
+          label='Order'
+          href='/order'
+          icon={<ShoppingCart />}
           className='flex-row'
           buttonClassName='pl-2'
         />
@@ -57,13 +57,6 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
           label='Schedule'
           href='/schedule'
           icon={<Calendar />}
-          className='flex-row'
-          buttonClassName='pl-2'
-        />
-        <SidebarItem
-          label='Order'
-          href='/order'
-          icon={<ShoppingCart />}
           className='flex-row'
           buttonClassName='pl-2'
         />

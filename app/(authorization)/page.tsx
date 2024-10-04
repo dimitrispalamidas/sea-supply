@@ -40,7 +40,7 @@ export default function Home() {
             </SignedOut>
             <SignedIn>
               <Button size='lg' variant='default' className='w-full' asChild>
-                <Link href='/home'>Go to App</Link>
+                <Link href='/order'>Go to App</Link>
               </Button>
             </SignedIn>
           </ClerkLoaded>
