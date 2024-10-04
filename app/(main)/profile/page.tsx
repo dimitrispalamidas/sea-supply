@@ -59,9 +59,12 @@ const ProfilePage: React.FC = () => {
     return <p>Please sign in to view your orders.</p>;
   }
 
+  const role = (user?.publicMetadata?.role as string) ?? "SEAFARER";
+
   return (
     <div className='p-8'>
-      <h1 className='text-2xl font-bold mb-4'>My Orders</h1>
+      <h1 className='text-2xl font-bold mb-4'>Hello {role}!</h1>
+      <h2 className='text-2xl font-bold mb-4'>My Orders</h2>
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (
@@ -73,7 +76,13 @@ const ProfilePage: React.FC = () => {
               <div
                 key={order.id}
                 className={`border p-4 rounded-lg shadow ${
-                  order.status === "PENDING" ? "bg-blue-200" : ""
+                  order.status === "PENDING"
+                    ? "bg-blue-200"
+                    : order.status === "APPROVED_BY_CAPTAIN"
+                    ? "bg-green-200"
+                    : order.status === "DECLINED_BY_CAPTAIN"
+                    ? "bg-red-200"
+                    : ""
                 }`}
               >
                 <h2 className='text-xl font-semibold mb-2 flex justify-between'>

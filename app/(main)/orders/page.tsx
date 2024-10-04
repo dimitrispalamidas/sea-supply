@@ -31,6 +31,7 @@ const OrdersPage = () => {
         throw new Error(`Error: ${res.status} ${res.statusText}`);
       }
       const data = await res.json();
+      console.log(data);
       setOrders(data);
     } catch (error) {
       console.error("Failed to fetch orders:", error);
@@ -39,8 +40,10 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
-    fetchOrders();
-  }, []);
+    if (isLoaded && isSignedIn) {
+      fetchOrders();
+    }
+  }, [isLoaded, isSignedIn]);
 
   // Function to update the order status (Captain or Store Manager actions)
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
@@ -50,7 +53,7 @@ const OrdersPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ orderId, status: newStatus }),
+        body: JSON.stringify({ orderId: orderId, status: newStatus }),
       });
 
       if (!res.ok) {
@@ -76,6 +79,10 @@ const OrdersPage = () => {
   }
 
   const role = (user?.publicMetadata?.role as string) ?? "SEAFARER"; // Get the role from public metadata
+
+  if (role !== "CAPTAIN" && role !== "STORE_MANAGER") {
+    return <div>You are not authorized to view this page.</div>;
+  }
 
   return (
     <div className='p-8'>
@@ -131,6 +138,14 @@ const OrdersPage = () => {
                     className='bg-green-500 text-white px-4 py-2 rounded'
                   >
                     Confirm Delivery
+                  </button>
+                  <button
+                    onClick={() =>
+                      updateOrderStatus(order.id, "DECLINED_BY_OFFICE")
+                    }
+                    className='bg-red-500 text-white px-4 py-2 rounded'
+                  >
+                    Decline Delivery
                   </button>
                 </div>
               )}
