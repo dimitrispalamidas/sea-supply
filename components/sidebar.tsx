@@ -54,8 +54,8 @@ export const Sidebar = ({ className, handleSheetClose }: SidebarProps) => {
           buttonClassName='pl-2'
         />
         <SidebarItem
-          label='Schedule'
-          href='/schedule'
+          label='Calendar'
+          href='/calendar'
           icon={<Calendar />}
           className='flex-row'
           buttonClassName='pl-2'
